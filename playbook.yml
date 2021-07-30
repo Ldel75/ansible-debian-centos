@@ -6,26 +6,26 @@
     yum:
       name: yum-utils
       state: latest
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Install device-mapper-persistent-data
     yum:
       name: device-mapper-persistent-data
       state: latest
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Install lvm2
     yum:
       name: lvm2
       state: latest
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Add Docker repo
     get_url:
       url: https://download.docker.com/linux/centos/docker-ce.repo
       dest: /etc/yum.repos.d/docer-ce.repo
     become: yes
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Enable Docker Edge repo
     ini_file:
@@ -34,7 +34,7 @@
       option: enabled
       value: 0
     become: yes
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Enable Docker Test repo
     ini_file:
@@ -43,7 +43,7 @@
       option: enabled
       value: 0
     become: yes
-    when: ansible_facts['os_family'] == CentOS
+    when: ansible_facts['os_family'] == 'RedHat'
 
   - name: Update the apt package index
     become: yes
